@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chart</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Land Surface Temperature Chart</h1>
+    <div id="chart"></div>
+
+    <script>
+        // Insert the Plotly chart into the div with id "chart"
+        var plotDiv = document.getElementById('chart');
+        var plotlyData = {{ plot_div|safe }};
+        plotDiv.innerHTML = plotlyData;
+    </script>
+</body>
+</html>

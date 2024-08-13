@@ -1,0 +1,63 @@
+/* styles.css */
+
+/* Header styles */
+
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #f8f9fa;
+}
+
+/* Main Content Styles */
+.main-content {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Additional Content Styles */
+.additional-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Form Styles */
+.form-control {
+    margin-bottom: 15px;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+/* Header Styles */
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Map Container Styles */
+#map-container {
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* About Section Styles */
+#about {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+
+/* Add more CSS styles as needed */

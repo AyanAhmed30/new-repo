@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+{% load static%}
+{%block title%} Create New Topic {%endblock%}
+
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Temperature Result</h5>
+                    <img src="{% static 'temp_service.jpg' %}" class="card-img-top" alt="temp"> 
+                    <p class="card-text">you can find the temperature result for any place and time</p>
+                    <a href="{% url 'temp_results' %}" class="btn btn-primary">Go to Service 1</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Result Type 2</h5>
+                    <p class="card-text">Description of Result Type 2.</p>
+                    <a href="service2.html" class="btn btn-primary">Go to Service 2</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Result Type 3</h5>
+                    <p class="card-text">Description of Result Type 3.</p>
+                    <a href="service3.html" class="btn btn-primary">Go to Service 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

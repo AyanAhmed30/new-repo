@@ -1,0 +1,183 @@
+
+{%extends 'base.html'%}
+{% load static %}
+
+{%block title%} Create New Topic {%endblock%}
+
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+    <!--{{ map.header.render|safe }}-->
+
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    
+</head>
+
+<body>
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            background-color: #4CAF50; /* Green color for the navbar */
+            color: #fff;
+        }
+    
+        .navbar-brand {
+            font-weight: bold;
+        }
+    
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+    
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+    
+        /* Container Styles */
+        .container {
+            margin-top: 20px;
+        }
+    
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        /* Button Styles */
+        .btn-primary {
+            background-color: #FF5722; /* Orange color for the primary button */
+            border-color: #FF5722;
+            border-radius: 8px; /* Rounded corners */
+            transition: all 0.3s ease; /* Smooth transition on hover */
+        }
+    
+        .btn-primary:hover {
+            background-color: #E64A19; /* Darker orange color on hover */
+            border-color: #E64A19;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    
+        /* Footer Styles */
+        .footer {
+            background-color: #333; /* Dark background color for the footer */
+            color: #fff;
+            padding: 20px 0;
+        }
+    
+        /* Modal Styles */
+        .modal-title {
+            color: #4CAF50; /* Green color for modal title */
+        }
+    
+        .modal-footer {
+            background-color: #333; /* Dark background color for modal footer */
+            color: #fff;
+        }
+    
+        /* Centered Button */
+        .centered-button {
+            text-align: center;
+        }
+    
+          /* Background Image */
+        body {
+            background-color: #FCF3CF; /* Light blue color as a fallback */
+            background-image: url('template/image.jpeg'); /* Replace 'template/image.jpeg' with the actual image filename */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+       
+        /* Style for the ChoiceField */
+        .custom-select {
+            color: white; /* Set the text color to white */
+            background-color: #FF5722; /* Set the background color to orange as an example */
+            /* Add other styling as needed */
+        }
+    
+    
+    </style>
+
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <form method="post">
+                <h3 style="color: black;">Select a Google Earth Engine Dataset</h3>
+                
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {% include 'includes/form.html' %}
+                    </div>
+                    <div class="centered-button">
+                        <button type="submit" class="btn btn-primary">Visualize</button>
+                    </div>
+                    
+                <p style="color: white;">
+                    <a href="{{url}}" target="_blank">Link to see the dataset description</a>
+                </p>
+            </div>
+            
+        </form>
+            <div class="col-md-12">
+                {{ map|safe }}
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center">
+                This module is created from Google Earth Engine data, for more information visit
+                <a href="https://earthengine.google.com/" target="_blank">https://earthengine.google.com/</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal de información -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Caña Panelera y Azucarera</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        This application is available for visualization.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <p>Work team:</p>
+                    <p><strong>NCBC Member</strong></p>
+                    <p><strong>NCBC Member</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery -->
+    {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> {% endcomment %}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('info').addEventListener("click", function() {
+            $('#infoModal').modal('show');
+        });
+    </script>
+    {% endblock %}

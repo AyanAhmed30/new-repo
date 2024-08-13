@@ -1,0 +1,197 @@
+{% load static %}
+
+
+
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-RoxolCzYK/gpz/gVRRm6i5g3Rs5iUbeBji2KUtJpjvt0a+ylVyM3BQ8yPL1jYrUHnnEkXjRmVDFCCv2PFS/nLw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geo Spatial Intelligence App</title>
+
+  
+  {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> {% endcomment %}
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+  {{ map.header.render|safe }}
+  <style>
+    /* Navbar Styles */
+    .navbar {
+        background-color: #4CAF50; /* Green color for the navbar */
+        color: #fff;
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #fff;
+    }
+
+    .navbar-nav .nav-link {
+        color: #fff;
+    }
+
+    /* Container Styles */
+    .container {
+        margin-top: 20px;
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Button Styles */
+    .btn-primary {
+        background-color: #FF5722; /* Orange color for the primary button */
+        border-color: #FF5722;
+        border-radius: 8px; /* Rounded corners */
+        transition: all 0.3s ease; /* Smooth transition on hover */
+    }
+
+    .btn-primary:hover {
+        background-color: #E64A19; /* Darker orange color on hover */
+        border-color: #E64A19;
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    /* Footer Styles */
+    .footer {
+        background-color: #333; /* Dark background color for the footer */
+        color: #fff;
+        padding: 20px 0;
+    }
+
+    /* Modal Styles */
+    .modal-title {
+        color: #4CAF50; /* Green color for modal title */
+    }
+
+    .modal-footer {
+        background-color: #333; /* Dark background color for modal footer */
+        color: #fff;
+    }
+
+    /* Centered Button */
+    .centered-button {
+        text-align: center;
+    }
+
+      /* Background Image */
+    body {
+        background-color: #FCF3CF; /* Light blue color as a fallback */
+        background-image: url('template/image.jpeg'); /* Replace 'template/image.jpeg' with the actual image filename */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    
+   
+    /* Style for the ChoiceField */
+    .custom-select {
+        color: white; /* Set the text color to white */
+        background-color: #FF5722; /* Set the background color to orange as an example */
+        /* Add other styling as needed */
+    }
+
+
+</style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+           <div class="col ">
+             <div class="text-start col-md-6 text-right">
+               <a href="{% url 'index' %}"><img src ="https://opendata.com.pk/uploads/group/2019-12-13-103415.458658NCBC-LOGO-TRANSPARENT.png" class="navbar-brand" style="width: 200px ;"></a>
+             </div>
+             <div class="text-start col-md-6 text-right">
+                
+               
+             </div>
+         </div>
+             
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mainMenu">
+            {%if user.is_authenticated%}
+            <ul class="navbar-nav ml-auto">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">
+                    Home
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'map' %}">
+                      Map
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'generate_chart' %}">
+                    Generate Chart
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'gee' %}">
+                      GEE
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'result_options' %}">
+                    Result Options
+                </a>
+            </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Welcome {{ user.username }}
+                    
+                </a>
+                <div class="dropdown-menu " aria-labelledby="userMenu">
+                    <a class="dropdown-item" href="{% url 'my_account' %}">My account</a>
+                    <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+              <img class="icon" src="{% static 'icon/userIcon.png' %}" alt="User Icon" style="height: 50px; width: 50px;">
+            </li>
+              <!-- Add more menu items as needed -->
+          </ul>
+              {%else%}
+              <form class="form-inline ml-auto">
+              <a href="{%url 'login'%}" class="btn btn-outline-secondary">login</a>
+              <a href="{%url 'signup'%}" class="btn btn-primary ml-2">Signup</a>
+              </form>
+                  {%endif%}
+      
+          </div>
+      
+          
+        
+    </nav>
+    
+
+    
+
+    {% block content %}
+
+    {% endblock %}
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

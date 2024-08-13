@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Spatial Intelligence App</title>
+    {% load static %}
+    <!-- Link to your CSS file for custom styles -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {{ map.header.render|safe }}
+    <!-- Link to your CSS file in final_working app -->
+    <link rel="stylesheet" href="{% static 'final_working/style.css' %}">
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body style="font-family: Arial, sans-serif;">
+
+    <!-- Bootstrap Container -->
+    <div class="container-fluid">
+
+        <!-- Bootstrap Row -->
+        <div class="row">
+
+            <!-- Sidebar Column (25% width) -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <h2>Additional Content</h2>
+
+                    <!-- Dropdown for selecting dataset -->
+                    <div class="form-group">
+                        <label for="dataset">Select Dataset:</label>
+                        <select class="form-control" id="dataset">
+                            <option value="landsat8">Landsat 8</option>
+                            <option value="sentinel2">Sentinel 2</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+
+                    <!-- Dropdown for selecting date range -->
+                    <div class="form-group">
+                        <label for="dateRange">Select Date Range:</label>
+                        <select class="form-control" id="dateRange">
+                            <option value="2022-01-01/2022-12-31">2022</option>
+                            <option value="2021-01-01/2021-12-31">2021</option>
+                            <option value="2020-01-01/2020-12-31">2022</option>
+                            <option value="2019-01-01/2019-12-31">2021</option>
+                            <option value="2018-01-01/2018-12-31">2022</option>
+                            <option value="2017-01-01/2017-12-31">2021</option>
+                            <option value="2016-01-01/2016-12-31">2022</option>
+                            <option value="2015-01-01/2015-12-31">2021</option>
+                            <!-- Add more date range options as needed -->
+                        </select>
+                    </div>
+
+                    <!-- Button to trigger action -->
+                    <button id="submitButton" class="btn btn-primary">Submit</button>
+
+                    <!-- Graph placeholder (you can add your graph here) -->
+                    <div id="graphPlaceholder">
+                        <!-- Add your graph here using JavaScript or an external library -->
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Column (75% width) -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <header style="background-color: #333; color: #fff; text-align: center; padding: 20px 0;">
+                    <nav>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="display: inline; margin-right: 20px;"><a href="#home" style="color: #fff; text-decoration: none;">Home</a></li>
+                            <li style="display: inline; margin-right: 20px;"><a href="#map" style="color: #fff; text-decoration: none;">Map</a></li>
+                            <li style="display: inline; margin-right: 20px;"><a href="#about" style="color: #fff; text-decoration: none;">About</a></li>
+                            <!-- Add more menu items as needed -->
+                        </ul>
+                    </nav>
+                    <h1>Geo Spatial Intelligence App</h1>
+                </header>
+
+                <div id="map-container" style="width: 100%; height: 500px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
+                    {{ map.html.render|safe }}
+                </div>
+
+                <section id="about" style="background-color: #f9f9f9; padding: 20px;">
+                    <div class="container" style="max-width: 800px; margin: 0 auto;">
+                        <h2>About Us</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit....</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link to your JavaScript file for custom scripts -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Ensure that the following line is unchanged -->
+    <script>
+        {{ map.script.render|safe }}
+    </script>
+    <script src="{% static 'final_working/custom.js' %}"></script>
+</body>
+
+</html>

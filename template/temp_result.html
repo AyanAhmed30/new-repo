@@ -1,0 +1,74 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{%block title%} Create New Topic {%endblock%}
+
+
+{% block content %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Bootstrap Container -->
+    <div class="container">
+
+        <!-- Bootstrap Row -->
+        <div class="row">
+
+            <!-- Sidebar Column (25% width) -->
+            <nav class="col-md-4 col-lg-3 d-md-block sidebar">
+                <div class="additional-content">
+                    <h2>Additional Content</h2>
+
+                    <!-- Form for selecting dataset and date range -->
+                    <form method="get" action="">
+                        <!-- Dropdown for selecting dataset -->
+                        <div class="form-group">
+
+                            <label for="shapefile">Select Shapefile:</label>
+                            <select class="form-control" id="shapefile" name="shapefile">
+                                {% for shape_option in shapes_options %}
+                                <option value="{{ shape_option }}">{{ shape_option }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Dropdown for selecting date range -->
+                        <div class="form-group">
+                            <p>Select Date Range</p>
+                            <label for="dateRangeFrom">From:</label>
+                            <input class="form-control" type="date" id="dateRangeFrom" name="dateRangeFrom">
+                            
+                            <label for="dateRangeTo">To:</label>
+                            <input class="form-control" type="date" id="dateRangeTo" name="dateRangeTo">
+                        </div>
+
+                        <!-- Button to trigger action -->
+                        <button id="submitButton" class="btn btn-primary" type="submit" name="submit">Submit</button>
+                       
+                        
+                    </form>
+                    
+
+                    <!-- Graph placeholder (you can add your graph here) -->
+                    <div id="graphPlaceholder">
+                        <!-- Add your graph here using JavaScript or an external library -->
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Column (75% width) -->
+            <main class="col-md-auto ms-sm-auto col-lg-auto px-md-4">             
+                <h1>Land Surface Temperature Chart</h1>
+                <div id="chart"></div>
+            
+                <script>
+                    // Insert the Plotly chart into the div with id "chart"
+                    var plotDiv = document.getElementById('chart');
+                    var plotlyData = {{ plot_div|safe }}
+                    
+                </script>
+                
+            </main>
+        </div>
+    </div>
+
+
+{% endblock %}

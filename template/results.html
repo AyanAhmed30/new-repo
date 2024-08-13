@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{%block title%} Create New Topic {%endblock%}
+
+
+{% block content %}
+    <!-- Bootstrap Container -->
+    <div class="container">
+
+        <!-- Bootstrap Row -->
+        <div class="row">
+
+            <!-- Sidebar Column (25% width) -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="additional-content">
+                    <h2>Additional Content</h2>
+
+                    <!-- Form for selecting dataset and date range -->
+                    <form method="get" action="">
+                        <!-- Dropdown for selecting dataset -->
+                        <div class="form-group">
+                            <label for="dataset">Select Dataset:</label>
+                            <select class="form-control" id="dataset" name="dataset">
+                                {% for dataset_option in dataset_options %}
+                                <option value="{{ dataset_option }}">{{ dataset_option }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <label for="shapefile">Select Shapefile:</label>
+                            <select class="form-control" id="shapefile" name="shapefile">
+                                {% for shape_option in shapes_options %}
+                                <option value="{{ shape_option }}">{{ shape_option }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Dropdown for selecting date range -->
+                        <div class="form-group">
+                            <p>Select Date Range</p>
+                            <label for="dateRangeFrom">From:</label>
+                            <input class="form-control" type="date" id="dateRangeFrom" name="dateRangeFrom">
+                            
+                            <label for="dateRangeTo">To:</label>
+                            <input class="form-control" type="date" id="dateRangeTo" name="dateRangeTo">
+                        </div>
+
+                        <!-- Button to trigger action -->
+                        <button id="submitButton" class="btn btn-primary" type="submit" name="submit">Submit</button>
+                       
+                        
+                    </form>
+                    
+
+                    <!-- Graph placeholder (you can add your graph here) -->
+                    <div id="graphPlaceholder">
+                        <!-- Add your graph here using JavaScript or an external library -->
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Column (75% width) -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                
+
+                <div id="map-container">
+                    {{ map.html.render|safe }}
+                </div>
+
+                <section id="about">
+                    <div class="container">
+                        
+                        <a href="{% url 'generate_ndvi_map' %}" download="ndvi_map.html">Download Map</a>
+                        <div class="main-content">
+                            <h2>About Us</h2>
+                            <p>National Center of Big Data & Cloud Computing, NEDUET</p>
+                        </div>
+                    </div>
+                    
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (optional) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+    <!-- Link to your JavaScript file for custom scripts -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Ensure that the following line is unchanged -->
+    <script>
+        {{ map.script.render|safe }}
+    </script>
+    <script src="{% static 'final_working/custom.js' %}"></script>
+    <script>
+        
+    </script>
+    {% endblock %}

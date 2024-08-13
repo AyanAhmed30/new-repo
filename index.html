@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Command</title>
+</head>
+<body>
+    <h1>Run Command</h1>
+    <button id="runCommand">Run Server Command</button>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById('runCommand').addEventListener('click', () => {
+            fetch('https://your-backend-url.com/run-command/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('result').textContent = 'Error: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>

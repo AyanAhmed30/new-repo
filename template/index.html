@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{%block title%} Create New Topic {%endblock%}
+
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="container mt-5">
+        <h1>Welcome to My Website</h1>
+        <p>This is a description of our website and the services we offer.</p>
+
+        <!-- Services Section -->
+        <h2>Our Services</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="{% static 'icon/map_icon.png' %}" class="card-img-top" alt="Service 1">
+                    <div class="card-body">
+                        <h5 class="card-title">GEE</h5>
+                        <p class="card-text">Description of Service 1.</p>
+                        <a href="{% url 'home' %}" class="btn btn-outline-dark">Free trial</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="service2.jpg" class="card-img-top" alt="Service 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Service 2</h5>
+                        <p class="card-text">Description of Service 2.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="service3.jpg" class="card-img-top" alt="Service 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Service 3</h5>
+                        <p class="card-text">Description of Service 3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
