@@ -12,11 +12,6 @@ import geemap.foliumap as geemap
 from datetime import date
 from shapely.geometry import Polygon
 
-def Timelapse_map():
-    st.title("Timelapse Page")
-    st.write("Content of the Timelapse Page.")
-    # Additional code for the Timelapse functionality
-
 st.set_page_config(layout="wide")
 warnings.filterwarnings("ignore")
 
